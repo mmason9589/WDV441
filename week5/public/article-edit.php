@@ -17,6 +17,12 @@ if (isset($_REQUEST['articleID']) && $_REQUEST['articleID'] > 0) {
     $articleDataArray = $newsArticle->articleData;
 }
 
+//if cancel is clicked, send back to list page
+if (isset($_POST['Cancel'])) {
+	header('location: listPage.php');
+	exit;
+}
+
 // apply the data if we have new data
 if (isset($_POST['Save'])) {
     // sanitize and set the post array to our local variable
