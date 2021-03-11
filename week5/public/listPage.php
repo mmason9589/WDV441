@@ -12,6 +12,17 @@ $listOfArticles = $newsArticle->getList('articleList');
 <head>
 <meta charset="UTF-8">
 <title>List Page - Articles</title>
+<style>
+
+	table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+		text-align: center;
+		padding: 5px;
+	}
+	
+</style>	
+	
 </head>
 
 <body>
@@ -22,29 +33,32 @@ $listOfArticles = $newsArticle->getList('articleList');
 	
 	<h3><u>List of Articles</u></h3>
 	
-	<?php 
-		foreach($listOfArticles as $x_value) {
+	
+	<table style="width: 50%">
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Date</th>
+			<th>View</th>
+			<th>Edit</th>
+		</tr>
+		<?php 
+			foreach($listOfArticles as $x_value) {
+
+			//var_dump($x_value);
+		?> 
+
+			<tr>
+				<td><?php echo $x_value['articleTitle']; ?></td>
+				<td><?php echo $x_value['articleAuthor']; ?></td>
+				<td><?php echo $x_value['articleDate']; ?></td>
+				<td><button onClick="document.location='article-view.php<?php echo "?articleID=" . $x_value['articleID'] ?>'">View</button></td>
+				<td><button onClick="document.location='article-edit.php<?php echo "?articleID=" . $x_value['articleID'] ?>'">Edit</button></td>
+			</tr>
 		
-		//var_dump($x_value);
-	?> 
-	
-	<p>
-		Title: <?php echo $x_value['articleTitle']; ?><br>
-		Author: <?php echo $x_value['articleAuthor']; ?><br>
-		Content: <?php echo $x_value['articleContent']; ?><br>
-		Date: <?php echo $x_value['articleDate']; ?>
-	</p>
-	
-	<p>
-		<button onClick="document.location='article-view.php<?php echo "?articleID=" . $x_value['articleID'] ?>'">View</button>
-		
-		<button onClick="document.location='article-edit.php<?php echo "?articleID=" . $x_value['articleID'] ?>'">Edit</button>
-	
-	</p><br>
-	
-	<?php 
-		}
-	?> 
-	
+		<?php 
+			}
+		?> 
+	</table>
 </body>
 </html>
